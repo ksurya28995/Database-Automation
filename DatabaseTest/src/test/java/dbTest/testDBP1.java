@@ -13,11 +13,11 @@ public static void main(String[] args) throws SQLException, ClassNotFoundExcepti
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");	
 		
 		//Creating a connection to the database
-		Connection conn = DriverManager.getConnection("jdbc:sqlserver://BDC8-DX-6PHHH92\\SQLEXPRESS/Profiles","ksurya2895","getITnow@surya");
+		Connection conn = DriverManager.getConnection("jdbc:sqlserver://BDC8-DX-6PHHH92:1433;instanceName=ksurya2895;databaseName=Profiles","ksurya2895","getITnow@surya");
 		
 		//Executing SQL query and fetching the result
 		Statement st = conn.createStatement();
-		String sqlStr = "select * from student;";
+		String sqlStr = "select * from student";
 		ResultSet rs = st.executeQuery(sqlStr);
 		while (rs.next()) {
 			System.out.println(rs.getString("name"));
