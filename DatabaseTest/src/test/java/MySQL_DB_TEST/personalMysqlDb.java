@@ -1,4 +1,4 @@
-package dbTest;
+package MySQL_DB_TEST;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class  d {		
+public class  personalMysqlDb {		
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			//Connection URL Syntax: "jdbc:mysql://ipaddress:portnumber/db_name"		
             String dbUrl = "jdbc:mysql://localhost:1433/Profiles";					
