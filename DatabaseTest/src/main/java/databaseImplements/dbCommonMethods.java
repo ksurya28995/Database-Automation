@@ -32,6 +32,7 @@ public class dbCommonMethods {
 	// Creating a connection to the database
 	public void getSqlConnection(String serverName, String databaseName) {
 		try {
+			loadSqlDriver();
 			conn = DriverManager.getConnection("jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName,
 					PropertyManager.getPropertyVal("username"), PropertyManager.getPropertyVal("password"));
 		} catch (SQLException e) {
@@ -41,16 +42,21 @@ public class dbCommonMethods {
 
 	public String[] runQuery(String query, String colmName) {
 		String[] fetchData = null;
-		int i = 0;
+		int databaseCount = 0;
 		try {
 			// Executing SQL query and fetching the resuslt
 			Statement stmt = conn.createStatement();
 			boolean isResultPresent = stmt.execute(query);
 			rs = isResultPresent ? stmt.getResultSet() : null;
 			if (rs != null) {
+				while (rs.next())
+					databaseCount++;
+				fetchData = new String[databaseCount];
+				databaseCount--;
+				rs = stmt.executeQuery(query);
 				while (rs.next()) {
-					fetchData[i] = rs.getString(colmName);
-					i++;
+					fetchData[databaseCount] = rs.getString(colmName);
+					databaseCount++;
 				}
 			}
 		} catch (Exception e) {

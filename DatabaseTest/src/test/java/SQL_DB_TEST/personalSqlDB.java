@@ -14,7 +14,6 @@ public class personalSqlDB {
 		try {
 			String[] dbDataList = null;
 			dbCommonMethods dbObj = new dbCommonMethods();
-			dbObj.loadSqlDriver();
 			dbObj.getSqlConnection("RAY-PC", "test01");
 			dbDataList = dbObj.runQuery(sqlQuery, colmName);
 			for (String output : dbDataList)
