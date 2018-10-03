@@ -33,27 +33,30 @@ public class dbCommonMethods {
 	public void getSqlConnection(String serverName, String databaseName) {
 		try {
 			conn = DriverManager.getConnection("jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName,
-					"ksurya2895", "ksurya2895");
+					PropertyManager.getPropertyVal("username"), PropertyManager.getPropertyVal("password"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public String runQuery(String query, String colmName) {
-		String outString = "";
+	public String[] runQuery(String query, String colmName) {
+		String[] fetchData = null;
+		int i = 0;
 		try {
-			// Executing SQL query and fetching the result
+			// Executing SQL query and fetching the resuslt
 			Statement stmt = conn.createStatement();
 			boolean isResultPresent = stmt.execute(query);
 			rs = isResultPresent ? stmt.getResultSet() : null;
 			if (rs != null) {
-				while (rs.next())
-					outString = outString + "//" + rs.getString(colmName).trim();
+				while (rs.next()) {
+					fetchData[i] = rs.getString(colmName);
+					i++;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return outString;
+		return fetchData;
 	}
 
 }

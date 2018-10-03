@@ -12,14 +12,12 @@ public class personalSqlDB {
 
 	public static void runSqlQuery(String sqlQuery, String colmName) {
 		try {
-			String outputLine = null;
-			String[] outputList = null;
+			String[] dbDataList = null;
 			dbCommonMethods dbObj = new dbCommonMethods();
 			dbObj.loadSqlDriver();
 			dbObj.getSqlConnection("RAY-PC", "test01");
-			outputLine = dbObj.runQuery(sqlQuery, colmName);
-			outputList = outputLine.split("//", -1);
-			for (String output : outputList)
+			dbDataList = dbObj.runQuery(sqlQuery, colmName);
+			for (String output : dbDataList)
 				System.out.println(output);
 		} catch (Exception e) {
 			e.printStackTrace();
