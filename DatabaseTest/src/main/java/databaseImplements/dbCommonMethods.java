@@ -23,7 +23,7 @@ public class dbCommonMethods {
 	// Loading the required MYSQL JDBC Driver class
 	public void loadMySqlDriver() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -35,6 +35,17 @@ public class dbCommonMethods {
 			loadSqlDriver();
 			conn = DriverManager.getConnection("jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName,
 					PropertyManager.getPropertyVal("username"), PropertyManager.getPropertyVal("password"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Creating a connection to the database
+	public void getMySqlConnection(String serverName, String databaseName) {
+		try {
+			loadMySqlDriver();
+			conn = DriverManager.getConnection("jdbc:mysql://" + serverName + ":3306/" + databaseName,
+					PropertyManager.getPropertyVal("mysqlusername"), PropertyManager.getPropertyVal("mysqlpassword"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -56,7 +67,7 @@ public class dbCommonMethods {
 				rs = stmt.executeQuery(query);
 				while (rs.next()) {
 					fetchData[databaseCount] = rs.getString(colmName);
-					databaseCount++;
+					databaseCount--;
 				}
 			}
 		} catch (Exception e) {
@@ -64,5 +75,5 @@ public class dbCommonMethods {
 		}
 		return fetchData;
 	}
-
+	
 }
