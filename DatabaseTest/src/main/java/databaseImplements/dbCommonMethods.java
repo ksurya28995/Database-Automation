@@ -11,7 +11,11 @@ public class dbCommonMethods {
 	private static Connection conn = null;
 	private static ResultSet rs = null;
 
-	// Loading the required SQL JDBC Driver class
+	/**
+	 * Method is used to load the required SQL JDBC Driver class
+	 * 
+	 * @author surya.k.kumaresan
+	 */
 	public void loadSqlDriver() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -20,7 +24,11 @@ public class dbCommonMethods {
 		}
 	}
 
-	// Loading the required MYSQL JDBC Driver class
+	/**
+	 * Method is used to load the required MYSQL JDBC Driver class
+	 * 
+	 * @author surya.k.kumaresan
+	 */
 	public void loadMySqlDriver() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,7 +37,11 @@ public class dbCommonMethods {
 		}
 	}
 
-	// Creating a connection to the database
+	/**
+	 * Method is used to create a connection to the sql database
+	 * 
+	 * @author surya.k.kumaresan
+	 */
 	public void getSqlConnection(String serverName, String databaseName) {
 		try {
 			loadSqlDriver();
@@ -40,7 +52,11 @@ public class dbCommonMethods {
 		}
 	}
 
-	// Creating a connection to the database
+	/**
+	 * Method is used to create a connection to the mysql database
+	 * 
+	 * @author surya.k.kumaresan
+	 */
 	public void getMySqlConnection(String serverName, String databaseName) {
 		try {
 			loadMySqlDriver();
@@ -51,6 +67,13 @@ public class dbCommonMethods {
 		}
 	}
 
+	/**
+	 * Method is used to run the query
+	 * 
+	 * @param query to run on the sql, colmName from which the value to be fetched as output
+	 * 
+	 * @author surya.k.kumaresan
+	 */
 	public String[] runQuery(String query, String colmName) {
 		String[] fetchData = null;
 		int databaseCount = 0;

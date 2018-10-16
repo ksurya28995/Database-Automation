@@ -2,7 +2,11 @@ package MySQL_DB_TEST;
 
 import java.sql.SQLException;
 import databaseImplements.dbCommonMethods;
-
+/**
+ * Class is used to run the query on the Mysql database
+ * 
+ * @author surya.k.kumaresan
+ */
 public class personalMysqlDb {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {

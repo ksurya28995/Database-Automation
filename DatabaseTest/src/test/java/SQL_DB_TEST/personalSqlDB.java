@@ -3,6 +3,11 @@ package SQL_DB_TEST;
 import java.sql.SQLException;
 import databaseImplements.dbCommonMethods;
 
+/**
+ * Class is used to run the query on the SQL database
+ * 
+ * @author surya.k.kumaresan
+ */
 public class personalSqlDB {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
