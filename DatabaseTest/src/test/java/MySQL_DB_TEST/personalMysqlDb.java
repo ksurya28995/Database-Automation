@@ -5,7 +5,7 @@ import databaseImplements.dbCommonMethods;
 /**
  * Class is used to run the query on the Mysql database
  * 
- * @author surya.k.kumaresan
+ * @author SuryaRay
  */
 public class personalMysqlDb {
 

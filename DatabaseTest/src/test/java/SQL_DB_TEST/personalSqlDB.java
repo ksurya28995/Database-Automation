@@ -6,7 +6,7 @@ import databaseImplements.dbCommonMethods;
 /**
  * Class is used to run the query on the SQL database
  * 
- * @author surya.k.kumaresan
+ * @author SuryaRay
  */
 public class personalSqlDB {
 

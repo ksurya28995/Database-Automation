@@ -14,7 +14,7 @@ public class dbCommonMethods {
 	/**
 	 * Method is used to load the required SQL JDBC Driver class
 	 * 
-	 * @author surya.k.kumaresan
+	 * @author SuryaRay
 	 */
 	public void loadSqlDriver() {
 		try {
@@ -27,7 +27,7 @@ public class dbCommonMethods {
 	/**
 	 * Method is used to load the required MYSQL JDBC Driver class
 	 * 
-	 * @author surya.k.kumaresan
+	 * @author SuryaRay
 	 */
 	public void loadMySqlDriver() {
 		try {
@@ -40,7 +40,7 @@ public class dbCommonMethods {
 	/**
 	 * Method is used to create a connection to the sql database
 	 * 
-	 * @author surya.k.kumaresan
+	 * @author SuryaRay
 	 */
 	public void getSqlConnection(String serverName, String databaseName) {
 		try {
@@ -55,7 +55,7 @@ public class dbCommonMethods {
 	/**
 	 * Method is used to create a connection to the mysql database
 	 * 
-	 * @author surya.k.kumaresan
+	 * @author SuryaRay
 	 */
 	public void getMySqlConnection(String serverName, String databaseName) {
 		try {
@@ -72,7 +72,7 @@ public class dbCommonMethods {
 	 * 
 	 * @param query to run on the sql, colmName from which the value to be fetched as output
 	 * 
-	 * @author surya.k.kumaresan
+	 * @author SuryaRay
 	 */
 	public String[] runQuery(String query, String colmName) {
 		String[] fetchData = null;
