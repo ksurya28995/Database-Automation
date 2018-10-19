@@ -74,29 +74,58 @@ public class dbCommonMethods {
 	 * 
 	 * @author SuryaRay
 	 */
-	public String[] runQuery(String query, String colmName) {
-		String[] fetchData = null;
-		int databaseCount = 0;
+	public String[] runQuery(String query) {
+		if (query.toLowerCase().contains("select")) {
+			System.out.println("Result of the SQL query: \"" + query + "\"");
+			System.out.println(
+					"-------------------------------------------------------------------------------------------");
+		}
+		String rowData = "";
+		String fullDbData = "";
+		String[] dbArrayData = null;
+		int colmCount = 0;
+		int i = 1;
 		try {
 			// Executing SQL query and fetching the resuslt
 			Statement stmt = conn.createStatement();
 			boolean isResultPresent = stmt.execute(query);
 			rs = isResultPresent ? stmt.getResultSet() : null;
 			if (rs != null) {
-				while (rs.next())
-					databaseCount++;
-				fetchData = new String[databaseCount];
-				databaseCount--;
-				rs = stmt.executeQuery(query);
+				colmCount = rs.getMetaData().getColumnCount();
 				while (rs.next()) {
-					fetchData[databaseCount] = rs.getString(colmName);
-					databaseCount--;
+					while (colmCount >= i) {
+						if (!rs.getString(i).equals(" ")) {
+							rowData = rowData + rs.getString(i) + ";";
+						} else {
+							rowData = rowData + "<empty>;";
+						}
+						i++;
+					}
+					rowData = rowData + "@@";
+					i = 1;
 				}
 			}
+			fullDbData = rowData + "##";
+			fullDbData = fullDbData.replaceAll(";@@##", "");
+			if (!fullDbData.equals("")) {
+				int rowCount = fullDbData.split("@@").length;
+				int dbArrayIndex = 0;
+				dbArrayData = new String[rowCount];
+				while (rowCount > dbArrayIndex) {
+					dbArrayData[dbArrayIndex] = fullDbData.split("@@")[dbArrayIndex];
+					dbArrayIndex++;
+				}
+			}
+			if (!fullDbData.equals("##"))
+				for (String line : dbArrayData) {
+					System.out.println(line);
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return fetchData;
+		System.out
+				.println("-------------------------------------------------------------------------------------------");
+		return dbArrayData;
 	}
 	
 }

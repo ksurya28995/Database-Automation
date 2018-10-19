@@ -11,16 +11,16 @@ import databaseImplements.dbCommonMethods;
 public class personalSqlDB {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		runSqlQuery("create table professional ( userId int, name varchar(50))", "");
-		runSqlQuery("select * from student;", "Name");
+		runSqlQuery("create table professional ( userId int, name varchar(50))");
+		runSqlQuery("select * from student;");
 	}
 
-	public static void runSqlQuery(String sqlQuery, String colmName) {
+	public static void runSqlQuery(String sqlQuery) {
 		try {
 			String[] dbDataList = null;
 			dbCommonMethods dbObj = new dbCommonMethods();
 			dbObj.getSqlConnection("BDC8-DX-6PHHH92\\SQLEXPRESS", "Profiles");
-			dbDataList = dbObj.runQuery(sqlQuery, colmName);
+			dbDataList = dbObj.runQuery(sqlQuery);
 			if (dbDataList != null)
 				for (String output : dbDataList)
 					System.out.println(output);
